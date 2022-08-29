@@ -20,9 +20,7 @@ import Prodedit from "./Prodedit";
 function App() {
   return (
     <BrowserRouter>
-      {/* <Dashboard></Dashboard>
-          <Users></Users> */}
-      <Routes>
+     <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/portal" element={<Portal />}>
         <Route path="dashboard" element={<Dashboard />} />

@@ -45,9 +45,12 @@ function Createuser() {
 
   return (
     <form onSubmit={formik.handleSubmit}>
+      
       <div className="container">
       <div className="row">
+      <h2> Create User-Form</h2>
         <div className="col-lg-6">
+        
           <label>Name</label>
           <input
             className={"form-control"}
@@ -104,12 +107,14 @@ function Createuser() {
           />
           <span style={{color:"red"}}>{formik.errors.Salary}</span>
         </div>
-        <button type={"submit"} 
-        classNameName="btn btn-primary ms-3 mt-3 col-lg-1"
-        disabled={formik.isValid?false:true}
-        >
-          Submit
-        </button>
+        <div className="container">  
+          <div className="row">   
+            <button type={"submit"} className="col-lg-1 col-sm-12 m-2 btn btn-primary"
+            disabled={formik.isValid?false:true}>   
+              Submit      
+            </button>     
+          </div>
+        </div>
       </div>
     </div>
     </form>
