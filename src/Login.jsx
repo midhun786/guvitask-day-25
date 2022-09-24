@@ -10,9 +10,9 @@ function Login() {
     let navigate= useNavigate();
 
     let username="abc";
-    let pass="123"
+    let pass="admin123"
     let login=()=>{
-      if(username=="abc" && pass=="123"){
+      if(username=="abc" && pass=="admin123"){
       navigate("/portal");
       context.setUsername(use)
       }else{
