@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Card from "./Card";
+import UserContext from "./Usercontext";
 function Dashboard() {
+  let context=useContext(UserContext)
     const cardDash=[
         {
         title:"EARNINGS (MONTHLY)",
@@ -30,6 +32,7 @@ function Dashboard() {
     {/* <!-- Page Heading --> */}
     <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
+        <span>{context.username}</span>
         <Link to="/portal/dashboard" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 className="fas fa-download fa-sm text-white-50"></i> Generate Report</Link>
     </div>

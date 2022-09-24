@@ -1,38 +1,36 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'                                    
 import { useParams } from 'react-router-dom';               
+import { env } from './config';
 
 function Userview() {                                      
   
-    const params =useParams();      //Alhamdullilah                 
+     const params =useParams();      //Alhamdullilah                 
      console.log(params.userviewid); 
      const [userData, setUserData]=useState({});
    
-     
-
-
-    useEffect(()=>{
-      Loaduser();
-    },[])   
+     useEffect(()=>{                                                                                                                                                                                                                                                                                         
+      Loaduser();       
+    },[])                                       
 
      let Loaduser=async()=>{   
     try{  
       
-     let user= await axios.get(`https://6283a4ad92a6a5e462271d0a.mockapi.io/users/${params.userviewid}`)
-      setUserData(user.data)
+     let user= await axios.get(`${env.api}/user/${params.userviewid}`)
+      setUserData(user.data)   
     
-     }catch(error){    
+     }catch(error){     
           
-     }
-     }
-    return ( 
+     }     
+     }     
+    return (         
         <>                                                                
          <h3>{`Name:${userData.Name}`}</h3>   
          <h3>{`Position:${userData.Position}`}</h3> 
          <h3>{`Office:${userData.Office}`}</h3>  
          <h3>{`Age:${userData.Age}`}</h3>     
          <h3>{`StartDate:${userData.Startdate}`}</h3>  
-         <h3>{`Salary:${userData.salary}`}</h3>                
+         <h3>{`Salary:${userData.Salary}`}</h3>                
          </>                      
                                                   
      )

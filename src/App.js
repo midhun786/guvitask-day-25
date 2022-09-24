@@ -2,8 +2,8 @@ import logo from "./logo.svg";
 // import "./CSS/sb-admin-2.css";
 import "./CSS/sb-admin-2.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import SideBar from "./Sidebar";
-import NavBar from "./NavBar";
+// import SideBar from "./Sidebar";
+// import NavBar from "./NavBar";
 import Dashboard from "./DashBoard";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -17,14 +17,17 @@ import Product from "./Products/product";
 import Createprod from "./Products/Createprod";
 import Prodview from "./Products/Prodview";
 import Prodedit from "./Prodedit";
+import { Userprovider } from "./Usercontext";
+import Profile from "./Profile";
 function App() {
   return (
     <BrowserRouter>
+    <Userprovider>
      <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/portal" element={<Portal />}>
         <Route path="dashboard" element={<Dashboard />} />
-          
+        <Route path="profile" element={<Profile />} /> 
           <Route path="users" element={<Users />} /> 
           
           <Route path="create-user" element={<Createuser />} />
@@ -39,6 +42,7 @@ function App() {
 
         </Route>
       </Routes>
+      </Userprovider>
     </BrowserRouter>
   );
 }

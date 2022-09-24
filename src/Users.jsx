@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { env } from './config';
 
 
 function Users() {
@@ -16,20 +17,25 @@ useEffect(()=>{
 },[]);
  let loadData=async()=>{
     setLoading(true);
-    let req= await axios.get("https://6283a4ad92a6a5e462271d0a.mockapi.io/users")
+    let req= await axios.get(`${env.api}/users`)
     setUser(req.data)
     setLoading(false);
    
  }
  let userDelete=async(id)=>{
   console.log("hello")
-  try{        
-   await axios.delete(`https://6283a4ad92a6a5e462271d0a.mockapi.io/users/${id}`)
-   loadData();
-  }catch(error){
-     
-   }
-  }
+    let ask =window.confirm('Are you sure want to delete?')
+    if(ask){
+      await axios.delete(`${env.api}/delete/${id}`)
+      loadData();
+    }}
+  // try{        
+  //  await axios.delete(`${env.api}/delete/${id}`)
+  //  loadData();
+  // }catch(error){
+  //    console.log(error);
+  //  }
+  // }
 
 
   return (
@@ -92,11 +98,11 @@ useEffect(()=>{
                                 <td>{ele.Office}</td>
                                 <td>{ele.Age}</td>
                                 <td>{ele.Startdate}</td>
-                                <td>{ele.salary}</td>
+                                <td>{ele.Salary}</td>
                              <td>  
-                           <Link to={`/portal/users/${ele.id}`}  type="button" class="btn m-1 btn-primary">View</Link>
-                            <Link to={`/portal/users/edit/${ele.id}`} type="button"  class="m-1 btn btn-warning">Edit</Link>
-                           <button onClick={()=>{userDelete(ele.id)}} type="button" class=" m-1 btn btn-danger">Delete</button>
+                           <Link to={`/portal/users/${ele._id}`}  type="button" class="btn m-1 btn-primary">View</Link>
+                            <Link to={`/portal/users/edit/${ele._id}`} type="button"  class="m-1 btn btn-warning">Edit</Link>
+                           <button onClick={()=>{userDelete(ele._id)}} type="button" class=" m-1 btn btn-danger">Delete</button>
                            </td>
                            </tr>
                                 

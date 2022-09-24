@@ -1,17 +1,26 @@
 import { Button } from 'bootstrap';
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import UserContext from './Usercontext';
 
 function Login() {
-  
-  //   let navigate= useNavigate();
-  //   let username="abc";
-  //   let pass="123"
-  //   let login=()=>{
-  //     (username=="abc" && pass=="123")?navigate("/portal/dashboard"):alert("wrong Creadentials")
-  //  }
+   let context=useContext(UserContext);
+   const [use,setUse]=useState("");
+     
+    let navigate= useNavigate();
+
+    let username="abc";
+    let pass="123"
+    let login=()=>{
+      if(username=="abc" && pass=="123"){
+      navigate("/portal");
+      context.setUsername(use)
+      }else{
+        alert("wrong Creadentials")
+      }
+   }
   return (
-    // <button onClick={login}>Login</button>
+    
    <>
 
 {/* <!-- Outer Row --> */}
@@ -33,11 +42,11 @@ function Login() {
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user"
                                         id="exampleInputEmail" aria-describedby="emailHelp"
-                                        placeholder="Enter Email Address..."/>
+                                       value={use} onChange={(e)=>{setUse(e.target.value)}} placeholder="Enter Email Address..."/>
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user"
-                                        id="exampleInputPassword" placeholder="Password"/>
+                                       id="exampleInputPassword" placeholder="Password"/>
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
@@ -46,9 +55,9 @@ function Login() {
                                             Me</label>
                                     </div>
                                 </div>
-                                <Link to="/portal" class="btn btn-primary btn-user btn-block">
+                                <button onClick={()=>login()} class="btn btn-primary btn-user btn-block">
                                     Login
-                                </Link>
+                                </button>
                                 <hr/>
                                 <Link to="/portal" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Login with Google
