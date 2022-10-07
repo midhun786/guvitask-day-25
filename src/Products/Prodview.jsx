@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { env } from '../config';
 
 function Prodview() {
     const params=useParams();
@@ -12,13 +13,13 @@ function Prodview() {
         Loadview();
     },[]);
     let Loadview=async()=>{
-        let view= await axios.get(`https://6283a4ad92a6a5e462271d0a.mockapi.io/product/${params.id}`)
+        let view= await axios.get(`${env.api}/product/${params.id}`)
         setView(view.data);
     }
 
   return (
     <>
-    <h1 class="container-fluid">ProductView:-({params.id})</h1>
+    <h1 class="container-fluid">ProductView:-database Object_id({params.id})</h1>
     <div class="container offset-4 mt-5">
         
     <h2>Name: {view.Product}</h2>

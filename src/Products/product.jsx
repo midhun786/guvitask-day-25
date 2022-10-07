@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { env } from '../config';
 
 function Product() {
   
@@ -30,7 +31,7 @@ function Product() {
       
     },[])
     let Loaddata= async()=>{
-        let user= await axios.get(`https://6283a4ad92a6a5e462271d0a.mockapi.io/product`)
+        let user= await axios.get(`${env.api}/products`)
         setData(user.data)
     }
 
@@ -38,11 +39,11 @@ function Product() {
     try{
         let ask=window.confirm("Are you sure want to Delete")
       if(ask){
-          await axios.delete(`https://6283a4ad92a6a5e462271d0a.mockapi.io/product/${identity}`)
+          await axios.delete(`${env.api}/prodelete/${identity}`)
         Loaddata();
       }
     }catch(errors){
-
+           console.log(errors)
        }
     } 
     return (
@@ -99,9 +100,9 @@ function Product() {
                                     <td>{ele.Hotel}</td>
                                     <td>{ele.City}</td>
                                     <td>
-                                    <Link to={`/portal/prodview/${ele.id}`} type="button" className="btn btn-secondary">View</Link>
-                                    <Link to={`/portal/prodedit/${ele.id}`} type="button" className="btn btn-info m-2">Edit</Link>
-                                    <button onClick={()=>{prodDelete(ele.id)}} type="button" className="btn btn-danger">Delete</button>
+                                    <Link to={`/portal/prodview/${ele._id}`} type="button" className="btn btn-secondary">View</Link>
+                                    <Link to={`/portal/prodedit/${ele._id}`} type="button" className="btn btn-info m-2">Edit</Link>
+                                    <button onClick={()=>{prodDelete(ele._id)}} type="button" className="btn btn-danger">Delete</button>
                                     </td>
                                     </tr> 
 

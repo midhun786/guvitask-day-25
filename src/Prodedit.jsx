@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from "formik";
 import axios from 'axios';
+import { env } from './config';
 
 function Prodedit() {
     const params=useParams();
@@ -37,7 +38,7 @@ function Prodedit() {
        return errors;
      },
      onSubmit:async(value)=>{
-       let submit=await axios.put(`https://6283a4ad92a6a5e462271d0a.mockapi.io/product/${params.id}`,value)
+       let submit=await axios.put(`${env.api}/proedit/${params.id}`,value)
        console.log(submit.data);
       //  alert("product updated");
        navigate("/portal/products")
@@ -49,7 +50,7 @@ function Prodedit() {
 
    let Loadedit=async()=>{
     try{
-    let edit = await axios.get(`https://6283a4ad92a6a5e462271d0a.mockapi.io/product/${params.id}`)
+    let edit = await axios.get(`${env.api}/product/${params.id}`)
     console.log(edit.data);
     formik.setValues({
        Product :edit.data.Product,

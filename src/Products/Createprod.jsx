@@ -2,6 +2,7 @@
 import { useFormik } from "formik";
 import Product from "./product";
 import axios from 'axios';
+import { env } from "../config";
 function Createprod() {
    
    const formik=useFormik({
@@ -33,8 +34,11 @@ function Createprod() {
         return errors;
      },
      onSubmit:async(values)=>{
-       let pro= await axios.post("https://6283a4ad92a6a5e462271d0a.mockapi.io/product",values)
-       console.log(pro.data)
+       let pro= await axios.post(`${env.api}/product`,values)
+      //  console.log(pro.data)
+       if(pro){
+        alert("product submitted successfully")
+       }
      },
 });
 

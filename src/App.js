@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 // import "./CSS/sb-admin-2.css";
 import "./CSS/sb-admin-2.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle"
 // import SideBar from "./Sidebar";
 // import NavBar from "./NavBar";
 import Dashboard from "./DashBoard";
