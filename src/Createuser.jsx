@@ -38,7 +38,11 @@ function Createuser() {
        return errors;
     },
     onSubmit:async(values)=>{
-      let req= await axios.post(`${env.api}/user`,values)
+      let req= await axios.post(`${env.api}/user`,values,{
+        headers:{
+          authorisation:window.localStorage.getItem("app-token")
+        }
+      })
       console.log(req);
       alert("user created")
     }

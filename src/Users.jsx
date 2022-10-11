@@ -17,7 +17,11 @@ useEffect(()=>{
 },[]);
  let loadData=async()=>{
     setLoading(true);
-    let req= await axios.get(`${env.api}/users`)
+    let req= await axios.get(`${env.api}/users`,{
+      headers:{
+        authorisation:window.localStorage.getItem("app-token")
+      }
+    })
     setUser(req.data)
     setLoading(false);
    
@@ -26,7 +30,11 @@ useEffect(()=>{
   console.log("hello")
     let ask =window.confirm('Are you sure want to delete?')
     if(ask){
-      await axios.delete(`${env.api}/delete/${id}`)
+      await axios.delete(`${env.api}/delete/${id}`,{
+        headers:{
+          authorisation:window.localStorage.getItem("app-token")
+        }
+      })
       loadData();
     }}
   // try{        

@@ -40,15 +40,15 @@ function Login() {
       onSubmit: async (values) => {
         try {
          let loginData= await axios.post(`${env.api}/login`, values);
-         console.log(loginData)
+        //  console.log(loginData)
         
-        //  if(loginData.data.token){
+         if(loginData.data.token){
   
           if(loginData.status === 200){
             navigate("/portal/dashboard");
-            // window.localStorage.setItem("app-token",loginData.data.token)
-           
-         }else{
+            window.localStorage.setItem("app-token",loginData.data.token)
+        }
+        }else{
           alert(loginData.data.message)
          }
    
@@ -114,6 +114,9 @@ function Login() {
                          LOGIN
                         </button>
                       </form>
+                     <div>for login please enter below (practice on progress) </div> <br/>
+                      email:person1@gmail.com;<br/>
+                      password:admin123;
                       <div className='text-center p-3 fw-bold mt-2'>
                       <p>Don't have an Account? <Link to={'/register'} className='btn btn-outline-info'>Register</Link></p>
                       

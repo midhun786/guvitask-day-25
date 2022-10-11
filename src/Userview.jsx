@@ -16,7 +16,11 @@ function Userview() {
      let Loaduser=async()=>{   
     try{  
       
-     let user= await axios.get(`${env.api}/user/${params.userviewid}`)
+     let user= await axios.get(`${env.api}/user/${params.userviewid}`,{
+        headers:{
+            authorisation:window.localStorage.getItem("app-token")
+          }
+     })
       setUserData(user.data)   
     
      }catch(error){     

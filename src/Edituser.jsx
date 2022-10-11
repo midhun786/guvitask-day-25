@@ -43,7 +43,11 @@ function Edituser() {
     },
     onSubmit:async(values)=>{
       console.log(values)
-      await axios.put(`${env.api}/edit/${params.id}`,values)
+      await axios.put(`${env.api}/edit/${params.id}`,values,{
+        headers:{
+          authorisation:window.localStorage.getItem("app-token")
+        }
+      })
       // alert('user updated')
       navigate("/portal/users")
     }
@@ -55,7 +59,11 @@ function Edituser() {
 
    let Loaduser=async()=>{
     try{
-    let user= await axios.get(`${env.api}/user/${params.id}`)
+    let user= await axios.get(`${env.api}/user/${params.id}`,{
+      headers:{
+        authorisation:window.localStorage.getItem("app-token")
+      }
+    })
       formik.setValues({
         Name:user.data.Name,
         Position:user.data.Position,
