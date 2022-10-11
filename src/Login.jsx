@@ -40,7 +40,7 @@ function Login() {
       onSubmit: async (values) => {
         try {
          let loginData= await axios.post(`${env.api}/login`, values);
-        //  console.log(loginData)
+         console.log(loginData)
         
          if(loginData.data.token){
   
@@ -49,7 +49,7 @@ function Login() {
             window.localStorage.setItem("app-token",loginData.data.token)
         }
         }else{
-          alert(loginData.data.message)
+          console.log(loginData.data.message)
          }
    
         } catch (error) {
